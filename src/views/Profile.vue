@@ -5,19 +5,21 @@
       <div class="container">
         <div v-for="post in posts" :key="post.id" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 50px;">
           <div>
-            <div style="display: flex; background-color: navy; justify-content: space-between; padding: 10px;">
-              <div>
+            
+            <div style="display: flex; background-color: navy; justify-content: space-evenly; padding: 10px;">
+              <div style="display: flex; justify-content: flex-start; align-items: center; width:33%;">
                 <i v-if="post.likedBy.includes(username)" @click="interact('post/unlike', post._id, null, 'PATCH')" class="fas fa-heart"></i>
                 <i v-else @click="interact('post/like', post._id, null, 'PATCH')" class="far fa-heart"></i>
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
-              <div>
-                 <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
+              <div style="display: flex; justify-content: center; align-items: center; width:33%;">
+                <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
               </div>
-              <div>
+              <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
                 <i @click="interact('post/delete', post._id, null, 'DELETE')" class="fas fa-trash"></i>
               </div>
             </div>
+
             <img v-bind:src="post.path" alt="user post" width=300 height=300 />
           </div>
           <div style="padding: 0 5px 0 5px;">
