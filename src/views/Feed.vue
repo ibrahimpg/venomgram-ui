@@ -11,6 +11,9 @@
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
               <div>
+                 <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
+              </div>
+              <div>
                 <i @click="interact('user/unfollow', null, post.username, 'PATCH')" class="fas fa-user-minus"></i>
                 <i @click="interact('post/report', post._id, null, 'PATCH')" class="fas fa-exclamation-circle"></i>
                 <i @click="interact('user/block', null, post.username, 'PATCH')" class="fas fa-ban"></i>

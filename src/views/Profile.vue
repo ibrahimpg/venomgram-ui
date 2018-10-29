@@ -12,6 +12,9 @@
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
               <div>
+                 <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
+              </div>
+              <div>
                 <i @click="interact('post/delete', post._id, null, 'DELETE')" class="fas fa-trash"></i>
               </div>
             </div>
