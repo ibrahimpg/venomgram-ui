@@ -37,7 +37,7 @@ export default {
     })
       .then(res => res.json())
       .then((data) => {
-        if(data.message === 'Authentication Failed.') {
+        if(data === 'Authentication Failed.') {
           localStorage.clear();
           this.$store.commit('setUser');
           console.log("Auth Failed. Token may be expired.");
