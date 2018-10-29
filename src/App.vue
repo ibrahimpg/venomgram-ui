@@ -31,9 +31,30 @@ export default {
   components: {
     Login,
   },
+  mounted() {
+    fetch(`https://venomgram-server.herokuapp.com/user/self-view`, {
+      headers: { Authorization: `Bearer ${this.token}` },
+    })
+      .then(res => res.json())
+      .then((data) => {
+        if(data.message === 'Authentication Failed.') {
+          localStorage.clear();
+          this.$store.commit('setUser');
+          console.log("Auth Failed. Token may be expired.");
+        } else {
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('token', data.token);
+          this.$store.commit('setUser');
+        }
+      })
+      .catch(err => console.log(err));
+  },
   computed: {
     username() {
       return this.$store.state.username;
+    },
+    token() {
+      return this.$store.state.token;
     },
   },
 };

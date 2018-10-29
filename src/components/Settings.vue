@@ -47,7 +47,7 @@ export default {
   },
   mounted() {
     fetch('https://venomgram-server.herokuapp.com/user/self-view/', {
-      headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${this.token}` },
     })
       .then(res => res.json())
       .then((data) => {
