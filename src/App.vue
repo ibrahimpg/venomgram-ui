@@ -40,11 +40,6 @@ export default {
         if(data === 'Authentication Failed.') {
           localStorage.clear();
           this.$store.commit('setUser');
-          console.log("Auth Failed. Token may be expired.");
-        } else {
-          localStorage.setItem('username', data.username);
-          localStorage.setItem('token', data.token);
-          this.$store.commit('setUser');
         }
       })
       .catch(err => console.log(err));
