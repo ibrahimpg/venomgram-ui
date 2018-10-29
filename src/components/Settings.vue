@@ -46,7 +46,7 @@ export default {
     };
   },
   mounted() {
-    fetch('https://venomgram-server-test.herokuapp.com/user/self-view/', {
+    fetch('https://venomgram-server.herokuapp.com/user/self-view/', {
       headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
     })
       .then(res => res.json())
@@ -65,13 +65,13 @@ export default {
       const formData = new FormData();
       formData.append('bio', this.newBio);
       formData.append('display', this.file);
-      fetch('https://venomgram-server-test.herokuapp.com/user/update', {
+      fetch('https://venomgram-server.herokuapp.com/user/update', {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${this.token}` },
         body: formData,
       })
         .then(() => {
-          fetch('https://venomgram-server-test.herokuapp.com/user/self-view/', {
+          fetch('https://venomgram-server.herokuapp.com/user/self-view/', {
             headers: { Authorization: `Bearer ${this.token}` },
           })
             .then(res => res.json())
