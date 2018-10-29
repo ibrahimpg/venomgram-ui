@@ -44,7 +44,6 @@ export default {
       .then(res => res.json())
       .then((data) => {
         this.posts = data;
-        console.log(data);
       })
       .catch(err => console.log(err));
   },
