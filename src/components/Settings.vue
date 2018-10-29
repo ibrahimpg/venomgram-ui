@@ -2,32 +2,60 @@
   <div class="body" style="padding:0">
     <div class="container">
 
-      <div style="display: flex; position: absolute; top: 10vh; right: 0">
-        <i v-if="!edit" @click="edit = true" class="fas fa-edit"></i>
-        <i v-if="edit" @click="edit = false" class="far fa-times-circle"></i>
-        <i @click="logout()" class="fas fa-sign-out-alt"></i>
-      </div>
+      <div v-if="!settings">
 
-      <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
-        <h2>{{userData.username}}</h2>
-        <img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" />
-        <p style="padding: 5px;">{{userData.bio}}</p>
-      </div>
-
-      <div v-if="edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
-        <h2>{{userData.username}}</h2>
-
-        <div v-if="!image" stlye="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-          <div><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" /></div>
-          <div><input type="file" @change="onFileChange"></div>
-        </div>
-        <div v-else style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-          <div><img :src="image" width=100 height=100 style="border-radius:50%;" /></div>
-          <div><input type="file" @change="onFileChange"></div>
+        <div style="display: flex; position: absolute; top: 10vh; right: 0">
+          <i v-if="!edit" @click="edit = true" class="fas fa-edit"></i>
+          <i v-if="edit" @click="edit = false" class="far fa-times-circle"></i>
+          <i @click="settings = true" class="fas fa-cog"></i>
+          <i @click="logout()" class="fas fa-sign-out-alt"></i>
         </div>
 
-        <input v-model="newBio" maxlength="200" />
-        <button @click="update()">Update</button>
+        <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
+          <h2>{{userData.username}}</h2>
+          <img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" />
+          <p style="padding: 5px;">{{userData.bio}}</p>
+        </div>
+
+        <div v-if="edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
+          <h2>{{userData.username}}</h2>
+
+          <div v-if="!image" stlye="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" /></div>
+            <div><input type="file" @change="onFileChange"></div>
+          </div>
+          <div v-else style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div><img :src="image" width=100 height=100 style="border-radius:50%;" /></div>
+            <div><input type="file" @change="onFileChange"></div>
+          </div>
+
+          <input v-model="newBio" maxlength="200" />
+          <button @click="update()">Update</button>
+        </div>
+
+      </div>
+
+      <div v-if="settings" style="height: 100%;">
+
+        <div style="display: flex; position: absolute; top: 10vh; right: 0">
+          <i @click="settings = false" class="far fa-times-circle fa-2x"></i>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center; height: 100%;">
+
+          <div>
+            <div v-for="user in userData.blocked" :key="user.id">
+              <p style="display:inline;">{{user}}</p>
+              <p style="display:inline;" @click="unblock(user)"> - Unblock</p>
+            </div>
+          </div>
+
+          <div>
+            <button @click="deleteAccount()">Delete Account</button>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
@@ -39,6 +67,7 @@ export default {
   name: 'Settings',
   data() {
     return {
+      settings: false,
       edit: false,
       userData: [],
       newBio: '',
@@ -100,6 +129,12 @@ export default {
     },
     removeImage(e) {
       this.image = '';
+    },
+    unblock(user){
+      console.log(user);
+    },
+    deleteAccount(){
+
     },
   },
   computed: {
