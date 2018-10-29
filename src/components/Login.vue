@@ -13,7 +13,7 @@
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
           <input v-model="username" placeholder="Username..." />
-          <input v-model="password" placeholder="Password..." />
+          <input v-model="password" type="password" placeholder="Password..." />
           <input type="button" value="Submit" @click="login()">
         </div>
       </div>
@@ -25,7 +25,7 @@
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
           <input v-model="username" placeholder="Username..." />
-          <input v-model="password" placeholder="Password..." />
+          <input v-model="password" type="password" placeholder="Password..." />
           <input type="button" value="Submit" @click="register()">
         </div>
       </div>
