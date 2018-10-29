@@ -44,7 +44,7 @@ export default {
     };
   },
   mounted() {
-    fetch(`https://venomgram-server-test.herokuapp.com/post/profile-view/${this.username}/${this.from}/${this.to}`)
+    fetch(`https://venomgram-server.herokuapp.com/post/profile-view/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
         this.posts = data;
@@ -55,7 +55,7 @@ export default {
     loadMore() {
       this.from += 5;
       this.to += 5;
-      fetch(`https://venomgram-server-test.herokuapp.com/post/profile-view/${this.username}/${this.from}/${this.to}`)
+      fetch(`https://venomgram-server.herokuapp.com/post/profile-view/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
           this.posts.push(...data);
@@ -63,14 +63,14 @@ export default {
         .catch(err => console.log(err));
     },
     interact(action, postId, username, method) {
-      fetch(`https://venomgram-server-test.herokuapp.com/${action}`, {
+      fetch(`https://venomgram-server.herokuapp.com/${action}`, {
         method,
         headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: postId, username }),
       })
         .then(res => res.json())
         .then((data) => {
-          fetch(`https://venomgram-server-test.herokuapp.com/post/profile-view/${this.username}/0/${this.to}`)
+          fetch(`https://venomgram-server.herokuapp.com/post/profile-view/${this.username}/0/${this.to}`)
             .then(res => res.json())
             .then((data) => { this.posts = data; });
         })

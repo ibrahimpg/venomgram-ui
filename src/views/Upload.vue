@@ -36,7 +36,7 @@ export default {
       const formData = new FormData();
       formData.append('caption', this.caption);
       formData.append('picture', this.file);
-      fetch('https://venomgram-server-test.herokuapp.com/post/upload', {
+      fetch('https://venomgram-server.herokuapp.com/post/upload', {
         method: 'POST',
         headers: { Authorization: `Bearer ${this.token}` },
         body: formData,
