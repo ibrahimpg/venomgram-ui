@@ -131,10 +131,36 @@ export default {
       this.image = '';
     },
     unblock(user){
-      console.log(user);
+      fetch(`https://venomgram-server.herokuapp.com/user/unblock`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: user }),
+      })
+        .then(res => res.json())
+        .then(() => {
+          fetch('https://venomgram-server.herokuapp.com/user/self-view/', {
+            headers: { Authorization: `Bearer ${this.token}` },
+          })
+          .then(res => res.json())
+          .then((data) => {
+            this.userData = data;
+            this.newBio = data.bio;
+          }).catch(err => console.log(err));
+        }).catch(err => console.log(err));
     },
     deleteAccount(){
-
+      fetch(`https://venomgram-server.herokuapp.com/user/delete`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${this.token}` },
+      })
+        .then(res => res.json())
+        .then((data) => {
+          if(data === 'User deleted.'){
+            localStorage.clear();
+            this.$store.commit('setUser');
+          }
+        })
+        .catch(err => console.log(err));
     },
   },
   computed: {
