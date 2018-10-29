@@ -6,7 +6,7 @@
           <div>
             <div style="display: flex; background-color: navy; justify-content: space-between; padding: 10px;">
               <div>
-                <i v-if="post.likedBy.includes(this.username)" @click="interact('post/unlike', post._id, null, 'PATCH')" class="fas fa-heart"></i>
+                <i v-if="post.likedBy.includes(username)" @click="interact('post/unlike', post._id, null, 'PATCH')" class="fas fa-heart"></i>
                 <i v-else @click="interact('post/like', post._id, null, 'PATCH')" class="far fa-heart"></i>
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
