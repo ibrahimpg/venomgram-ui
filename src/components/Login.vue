@@ -8,8 +8,8 @@
 
       <div class="box" v-if="active === 'login'">
         <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; width: 100%; border-bottom: 3px solid navy;">
-          <h3 @click="active = 'login'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 5px 0;">Login</h3>
-          <h3 @click="active = 'register'" style="width:100%; cursor: pointer; padding: 5px 0;">Register</h3>
+          <h3 @click="active = 'login'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 2px;">Login</h3>
+          <h3 @click="active = 'register'" style="width:100%; cursor: pointer; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
           <input v-model="username" placeholder="Username..." />
@@ -20,8 +20,8 @@
 
       <div class="box" v-if="active === 'register'">
         <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; width: 100%; border-bottom: 3px solid navy;">
-          <h3 @click="active = 'login'" style="width:100%; cursor: pointer; padding: 5px 0;">Login</h3>
-          <h3 @click="active = 'register'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 5px 0;">Register</h3>
+          <h3 @click="active = 'login'" style="width:100%; cursor: pointer; padding: 2px;">Login</h3>
+          <h3 @click="active = 'register'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
           <input v-model="username" placeholder="Username..." />
