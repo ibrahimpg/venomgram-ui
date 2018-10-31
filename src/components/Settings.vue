@@ -6,9 +6,9 @@
 
         <div style="display: flex; position: absolute; top: 10vh; right: 0">
           <i v-if="!edit" @click="edit = true" class="fas fa-edit"></i>
-          <i v-if="edit" @click="edit = false" class="far fa-times-circle"></i>
-          <i @click="settings = true" class="fas fa-cog"></i>
-          <i @click="logout()" class="fas fa-sign-out-alt"></i>
+          <i v-if="edit" @click="edit = false" class="far fa-times-circle fa-2x"></i>
+          <i v-if="!edit" @click="settings = true" class="fas fa-cog"></i>
+          <i v-if="!edit" @click="logout()" class="fas fa-sign-out-alt"></i>
         </div>
 
         <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
@@ -43,10 +43,11 @@
 
         <div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center; height: 100%;">
 
-          <div>
+          <div style="height: 100px; overflow-y: auto; padding: 0 15px;">
+            <p>Users you have blocked will appear here.</p>
             <div v-for="user in userData.blocked" :key="user.id">
-              <p style="display:inline;">{{user}}</p>
-              <p style="display:inline;" @click="unblock(user)"> - Unblock</p>
+              <p style="display:inline;"><b>{{user}}</b> - </p>
+              <p style="display:inline; cursor: pointer;" @click="unblock(user)">Unblock</p>
             </div>
           </div>
 

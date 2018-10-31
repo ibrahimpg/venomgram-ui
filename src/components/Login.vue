@@ -75,7 +75,14 @@ export default {
         body: JSON.stringify({ username: this.username, password: this.password }),
       })
         .then(res => res.json())
-        .then(data => this.response = data.message)
+        .then(data => {
+          if(data.message === 'User created.'){
+            this.active = 'login';
+            this.response = data.message + ' Please log in.';
+          } else {
+            this.response = data.message;
+          }
+        })
         .catch(err => this.response = err);
     },
   },

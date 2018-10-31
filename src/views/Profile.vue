@@ -26,7 +26,7 @@
             <p style="width:300px;"><b>{{post.username}} </b>{{post.caption}}</p>
           </div>
         </div>
-        <button v-if="posts.length >= 5" @click="loadMore()">Load More</button>
+        <button id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">Load More</button>
       </div>
     </div>
   </div>
@@ -46,6 +46,7 @@ export default {
       posts: [],
       from: 0,
       to: 5,
+      morePosts: true,
     };
   },
   mounted() {
@@ -63,6 +64,9 @@ export default {
       fetch(`https://venomgram-server.herokuapp.com/post/profile-view/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
+          if(data.length === 0) {
+            this.morePosts = false;
+          }
           this.posts.push(...data);
         })
         .catch(err => console.log(err));

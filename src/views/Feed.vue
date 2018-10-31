@@ -2,9 +2,16 @@
   <div>
     <div class="body">
       <div class="container">
+
+        <div v-if="posts.length === 0">
+          <p>
+            There doesn't seem to be anything here.
+            Head to the <router-link to="/explore">Explore page</router-link> to find some people to follow! 
+          </p>
+        </div>
+
         <div v-for="post in posts" :key="post.id" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 50px;">
           <div>
-
             <div style="display: flex; background-color: navy; justify-content: space-between; padding: 10px;">
               <div style="display: flex; justify-content: flex-start; align-items: center; width:33%;">
                 <i v-if="post.likedBy.includes(username)" @click="interact('post/unlike', post._id, null, 'PATCH')" class="fas fa-heart"></i>
@@ -20,14 +27,15 @@
                 <i @click="interact('user/block', null, post.username, 'PATCH')" class="fas fa-ban"></i>
               </div>
             </div>
-
             <img v-bind:src="post.path" alt="user post" width=300 height=300 />
           </div>
           <div style="padding: 0 5px 0 5px;">
             <p style="width:300px;"><b>{{post.username}} </b>{{post.caption}}</p>
           </div>
         </div>
-        <button v-if="posts.length >= 5" @click="loadMore()">Load More</button>
+
+        <button id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">Load More</button>
+      
       </div>
     </div>
   </div>
@@ -42,6 +50,7 @@ export default {
       posts: [],
       from: 0,
       to: 5,
+      morePosts: true,
     };
   },
   mounted() {
@@ -59,6 +68,9 @@ export default {
       fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
+          if(data.length === 0) {
+            this.morePosts = false;
+          }
           this.posts.push(...data);
         })
         .catch(err => console.log(err));
@@ -70,7 +82,7 @@ export default {
         body: JSON.stringify({ id: postId, username }),
       })
         .then(res => res.json())
-        .then((data) => {
+        .then(() => {
           fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/0/${this.to}`)
             .then(res => res.json())
             .then((data) => { this.posts = data; });

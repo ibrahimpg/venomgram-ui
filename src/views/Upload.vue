@@ -17,6 +17,8 @@
         <button @click="upload()">Submit</button>
       </div>
 
+      <div style="margin-top:10px;"><p>{{response}}</p></div>
+
     </div>
   </div>
 </template>
@@ -29,6 +31,7 @@ export default {
     return {
       image: '',
       caption: '',
+      response: '',
     };
   },
   methods: {
@@ -43,8 +46,13 @@ export default {
       })
         .then(res => res.json())
         .then((data) => {
-          console.log(data);
-          this.image = '';
+          if(data === 'Picture posted.') {
+            this.image = '';
+            this.caption = '';
+            this.$router.push('/profile');
+          } else {
+            this.response = 'An error occurred while posting your picture. Please try again.'
+          }
         });
     },
     onFileChange(e) {
@@ -62,6 +70,8 @@ export default {
     },
     removeImage(e) {
       this.image = '';
+      this.caption = '';
+      this.response = '';
     },
   },
   computed: {
@@ -77,6 +87,7 @@ export default {
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
