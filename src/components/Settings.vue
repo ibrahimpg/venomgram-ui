@@ -4,7 +4,7 @@
 
       <div v-if="!settings">
 
-        <div style="display: flex; position: absolute; top: 10vh; right: 0">
+        <div style="display: flex; position: absolute; top: 11vh; right: 10px">
           <i v-if="!edit" @click="edit = true" class="fas fa-edit"></i>
           <i v-if="edit" @click="edit = false" class="far fa-times-circle fa-2x"></i>
           <i v-if="!edit" @click="settings = true" class="fas fa-cog"></i>
@@ -37,7 +37,7 @@
 
       <div v-if="settings" style="height: 100%;">
 
-        <div style="display: flex; position: absolute; top: 10vh; right: 0">
+        <div style="display: flex; position: absolute; top: 11vh; right: 10px">
           <i @click="settings = false" class="far fa-times-circle fa-2x"></i>
         </div>
 

@@ -63,7 +63,7 @@ export default {
             localStorage.setItem('token', data.token);
             this.$store.commit('setUser');
           } else {
-            this.response = data.message;
+            this.response = 'Login failed.';
           }
         })
         .catch(err => this.response = 'Login failed.');
@@ -80,7 +80,7 @@ export default {
             this.active = 'login';
             this.response = data.message + ' Please log in.';
           } else {
-            this.response = data.message;
+            this.response = 'Registration failed. Please try again.';
           }
         })
         .catch(err => this.response = err);

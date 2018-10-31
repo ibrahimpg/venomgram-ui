@@ -3,7 +3,7 @@
     <Settings />
     <div class="body">
       <div class="container">
-        <div v-for="post in posts" :key="post.id" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 50px;">
+        <div v-for="post in posts" :key="post.id" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2); width: 300px;">
           <div>
             
             <div style="display: flex; background-color: navy; justify-content: space-evenly; padding: 10px;">
@@ -20,10 +20,10 @@
               </div>
             </div>
 
-            <img v-bind:src="post.path" alt="user post" width=300 height=300 />
+            <img v-bind:src="post.path" alt="user post" width=300 height=300 style="object-fit: cover;" />
           </div>
-          <div style="padding: 0 5px 0 5px;">
-            <p style="width:300px;"><b>{{post.username}} </b>{{post.caption}}</p>
+          <div>
+            <p style="width:300px; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
           </div>
         </div>
         <button id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">Load More</button>
