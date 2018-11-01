@@ -1,5 +1,14 @@
 <template>
   <div>
+
+    <div v-if="modal === true">
+      <div style="display: flex; position: fixed; top: 11vh; right: 10px">
+        <i @click="modal = false; imageSource = ''" class="far fa-times-circle fa-2x" style="color:navy;"></i>
+      </div>
+      <img v-bind:src="imageSource" alt="user img">
+    </div>
+
+    <div v-if="modal === false">
     <div class="body">
       <div class="container">
 
@@ -10,7 +19,7 @@
           </p>
         </div>
 
-        <div v-for="post in posts" :key="post.id" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2); width: 300px;">
+        <div v-for="post in posts" :key="post.id" style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 50px; box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2); width: 300px;">
           <div>
             <div style="display: flex; background-color: navy; justify-content: space-between; padding: 10px;">
               <div style="display: flex; justify-content: flex-start; align-items: center; width:33%;">
@@ -27,7 +36,7 @@
                 <i @click="interact('user/block', null, post.username, 'PATCH')" class="fas fa-ban"></i>
               </div>
             </div>
-            <img v-bind:src="post.path" alt="user post" width=300 height=300 style="object-fit: cover;" />
+            <img @click="modal = true; imageSource = post.path" v-bind:src="post.path" alt="user post" width=300 height=300 style="object-fit: cover;" />
           </div>
           <div>
             <p style="width:300px; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
@@ -37,6 +46,8 @@
         <button id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">Load More</button>
       
       </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -51,6 +62,8 @@ export default {
       from: 0,
       to: 5,
       morePosts: true,
+      modal: false,
+      imageSource: '',
     };
   },
   mounted() {
