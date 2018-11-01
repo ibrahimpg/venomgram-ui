@@ -38,3 +38,5 @@ Grab the newly created 'dist' folder in your directory and throw it up on Netlif
 * A lot of 'i' elements that run the same standard fetch request. Maybe turn it into a component with an 'icon' attribute that is filled with the icon's Font Awesome class.
 
 * Move Heroku and Cloudinary URLs to environmental variables.
+
+* Add 10vh margin to top (and bottom?) of image view modal.
