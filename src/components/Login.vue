@@ -106,6 +106,7 @@ export default {
     width: 300px;
     height: 200px;
     border: 5px solid navy;
+    margin-top: 10px;
   }
 
   input[type=button] {
