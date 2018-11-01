@@ -40,3 +40,7 @@ Grab the newly created 'dist' folder in your directory and throw it up on Netlif
 * Move Heroku and Cloudinary URLs to environmental variables.
 
 * Add 10vh margin to top (and bottom?) of image view modal.
+
+* Put a "3 dots" (options icon) which show block/report options upon click instead of having them always visible.
+
+* Show username/password requirements on login/register screen (maybe through client-side validation).
