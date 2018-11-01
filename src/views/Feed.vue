@@ -12,7 +12,7 @@
     <div class="body">
       <div class="container">
 
-        <div v-if="posts.length === 0">
+        <div v-if="noPosts">
           <p>
             There doesn't seem to be anything here.
             Head to the <router-link to="/explore">Explore page</router-link> to find some people to follow! 
@@ -64,12 +64,16 @@ export default {
       morePosts: true,
       modal: false,
       imageSource: '',
+      noPosts: false,
     };
   },
   mounted() {
     fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
+        if(data.length === 0) {
+          this.noPosts = true;
+        }
         this.posts = data;
       })
       .catch(err => console.log(err));
