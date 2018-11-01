@@ -92,6 +92,30 @@ h2, h3, h4, h5, h6, p { font-family: 'Montserrat', Verdana, sans-serif; margin: 
 #nav a { color: navy; }
 #nav a.router-link-exact-active { color: lightgreen; }
 
-.body { margin-top: 10vh; margin-bottom: 10vh; padding: 10px; }
+.body { margin-top: 10vh; margin-bottom: 10vh; padding-top:10px; }
+
+.card {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  margin-bottom: 50px; 
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2); 
+  width: 300px;
+}
+
+.picture {
+  width: 300px; 
+  max-height: 300px; 
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 500px) {
+    .card, .picture {
+        width: 100%;
+    }
+    .body {
+      padding-top: 0;
+    }
+}
 
 </style>
