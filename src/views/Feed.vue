@@ -31,12 +31,13 @@
                 <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
               </div>
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
+                <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
                 <i @click="interact('user/unfollow', null, post.username, 'PATCH')" class="fas fa-user-minus"></i>
                 <i @click="interact('post/report', post._id, null, 'PATCH')" class="fas fa-exclamation-circle"></i>
                 <i @click="interact('user/block', null, post.username, 'PATCH')" class="fas fa-ban"></i>
               </div>
             </div>
-            <img @click="modal = true; imageSource = post.path" v-bind:src="post.path" alt="user post" class="picture" />
+            <img @dblclick="interact('post/like', post._id, null, 'PATCH')" v-bind:src="post.path" alt="user post" class="picture" />
           </div>
           <div>
             <p style="width:300px; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
@@ -73,7 +74,11 @@ export default {
     fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
-        if(data.length === 0) {
+        if(data === 'Authentication Failed.') {
+          localStorage.clear();
+          this.$store.commit('setUser');
+        }
+        else if(data.length === 0) {
           this.noPosts = true;
         }
         this.posts = data;
@@ -87,7 +92,11 @@ export default {
       fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
-          if(data.length === 0) {
+          if(data === 'Authentication Failed.') {
+            localStorage.clear();
+            this.$store.commit('setUser');
+          }
+          else if(data.length === 0) {
             this.morePosts = false;
           }
           this.posts.push(...data);
@@ -101,10 +110,20 @@ export default {
         body: JSON.stringify({ id: postId, username }),
       })
         .then(res => res.json())
-        .then(() => {
+        .then((data) => {
+          if(data === 'Authentication Failed.') {
+            localStorage.clear();
+            this.$store.commit('setUser');
+          }
           fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/0/${this.to}`)
             .then(res => res.json())
-            .then((data) => { this.posts = data; });
+            .then((data) => { 
+              if(data === 'Authentication Failed.') {
+                localStorage.clear();
+                this.$store.commit('setUser');
+              }
+              this.posts = data; 
+            });
         })
         .catch(err => console.log(err));
     },

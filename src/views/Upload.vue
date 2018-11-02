@@ -46,7 +46,11 @@ export default {
       })
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Picture posted.') {
+          if(data === 'Authentication Failed.') {
+            localStorage.clear();
+            this.$store.commit('setUser');
+          }
+          else if(data === 'Picture posted.') {
             this.image = '';
             this.caption = '';
             this.$router.push('/profile');

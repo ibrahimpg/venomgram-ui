@@ -9,7 +9,7 @@
       <div class="box" v-if="active === 'login'">
         <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; width: 100%; border-bottom: 3px solid navy;">
           <h3 @click="active = 'login'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 2px;">Login</h3>
-          <h3 @click="active = 'register'" style="width:100%; cursor: pointer; padding: 2px;">Register</h3>
+          <h3 @click="active = 'register'; response = 'Usernames must be 6-16 characters and contain only lowercase letters, numbers, hyphens, and underscores.'" style="width:100%; cursor: pointer; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
           <input v-model="username" placeholder="Username..." />
@@ -20,7 +20,7 @@
 
       <div class="box" v-if="active === 'register'">
         <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; width: 100%; border-bottom: 3px solid navy;">
-          <h3 @click="active = 'login'" style="width:100%; cursor: pointer; padding: 2px;">Login</h3>
+          <h3 @click="active = 'login'; response=''" style="width:100%; cursor: pointer; padding: 2px;">Login</h3>
           <h3 @click="active = 'register'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div style="margin-top:10px;"><p>{{response}}</p></div>
+      <div style="margin-top:10px; width: 300px;"><p>{{response}}</p></div>
 
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
             this.active = 'login';
             this.response = data.message + ' Please log in.';
           } else {
-            this.response = 'Registration failed. Please try again.';
+            this.response = 'Registration failed. Please try again. Usernames must 6-16 characters and contain only lowercase letters, numbers, hyphens, and underscores.';
           }
         })
         .catch(err => this.response = err);
