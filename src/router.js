@@ -26,10 +26,5 @@ export default new Router({
       name: 'profile',
       component: () => import('./views/Profile.vue'),
     },
-    {
-      path: '/message',
-      name: 'message',
-      component: () => import('./views/Message.vue'),
-    },
   ],
 });

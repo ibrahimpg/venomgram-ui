@@ -50,8 +50,8 @@
       
       </div>
       </div>
-
     </div>
+
   </div>
 </template>
 
@@ -68,6 +68,8 @@ export default {
       modal: false,
       imageSource: '',
       noPosts: false,
+      viewProfile: false,
+      profileSource: '',
     };
   },
   mounted() {
