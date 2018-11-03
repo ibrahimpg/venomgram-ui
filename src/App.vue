@@ -32,7 +32,7 @@ export default {
     Login,
   },
   mounted() {
-    fetch(`https://venomgram-server.herokuapp.com/user/self-view`, {
+    fetch(`https://venomgram-server.herokuapp.com/user/self`, {
       headers: { Authorization: `Bearer ${this.token}` },
     })
       .then(res => res.json())
