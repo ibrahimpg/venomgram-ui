@@ -21,7 +21,7 @@
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
               <div style="display: flex; justify-content: center; align-items: center; width:33%;">
-                <img v-bind:src="'process.env.VUE_APP_CLOUDINARY' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
+                <img v-bind:src="cloudinaryURL + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
               </div>
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
                 <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
@@ -61,6 +61,7 @@ export default {
       morePosts: true,
       modal: false,
       imageSource: '',
+      cloudinaryURL: process.env.VUE_APP_CLOUDINARY,
     };
   },
   mounted() {
