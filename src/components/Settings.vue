@@ -13,7 +13,7 @@
 
         <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
           <h2>{{userData.username}}</h2>
-          <img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" />
+          <img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%; object-fit: cover;" />
           <p style="padding: 5px;">{{userData.bio}}</p>
         </div>
 
@@ -21,11 +21,11 @@
           <h2>{{userData.username}}</h2>
 
           <div v-if="!image" stlye="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%;" /></div>
+            <div><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%; object-fit: cover;" /></div>
             <div><input type="file" @change="onFileChange"></div>
           </div>
           <div v-else style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div><img :src="image" width=100 height=100 style="border-radius:50%;" /></div>
+            <div><img :src="image" width=100 height=100 style="border-radius:50%; object-fit: cover;" /></div>
             <div><input type="file" @change="onFileChange"></div>
           </div>
 
