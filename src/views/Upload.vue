@@ -2,13 +2,13 @@
   <div class="body">
     <div class="container">
 
-      <div v-if="!image">
+      <div v-if="!image" style="margin-top:5px;">
         <div style="height: 200px; width: 200px; border: 1px solid black;"></div>
         <h3>Upload an image</h3><br>
         <input type="file" @change="onFileChange">
       </div>
 
-      <div v-else>
+      <div v-else style="margin-top:5px;">
         <img :src="image" />
         <button @click="removeImage">Remove</button>
         <br>
