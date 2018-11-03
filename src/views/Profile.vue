@@ -22,7 +22,7 @@
                 <p style="color: white; display: inline; margin-left: 10px;">{{post.likedBy.length}}</p>
               </div>
               <div style="display: flex; justify-content: center; align-items: center; width:33%;">
-                <img v-bind:src="'https://res.cloudinary.com/hsszham13/' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
+                <img v-bind:src="'process.env.VUE_APP_CLOUDINARY' + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
               </div>
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
                 <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
@@ -68,7 +68,7 @@ export default {
     };
   },
   mounted() {
-    fetch(`https://venomgram-server.herokuapp.com/post/profile/${this.username}/${this.from}/${this.to}`)
+    fetch(`${process.env.VUE_APP_SERVER}/post/profile/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
         if(data === 'Authentication Failed.') {
@@ -83,7 +83,7 @@ export default {
     loadMore() {
       this.from += 5;
       this.to += 5;
-      fetch(`https://venomgram-server.herokuapp.com/post/profile/${this.username}/${this.from}/${this.to}`)
+      fetch(`${process.env.VUE_APP_SERVER}/post/profile/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
           if(data === 'Authentication Failed.') {
@@ -98,7 +98,7 @@ export default {
         .catch(err => console.log(err));
     },
     interact(action, postId, username, method) {
-      fetch(`https://venomgram-server.herokuapp.com/${action}`, {
+      fetch(`${process.env.VUE_APP_SERVER}/${action}`, {
         method,
         headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: postId, username }),
@@ -109,7 +109,7 @@ export default {
             localStorage.clear();
             this.$store.commit('setUser');
           }
-          fetch(`https://venomgram-server.herokuapp.com/post/profile/${this.username}/0/${this.to}`)
+          fetch(`${process.env.VUE_APP_SERVER}/post/profile/${this.username}/0/${this.to}`)
             .then(res => res.json())
             .then((data) => { this.posts = data; });
         })

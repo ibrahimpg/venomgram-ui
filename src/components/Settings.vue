@@ -76,7 +76,7 @@ export default {
     };
   },
   mounted() {
-    fetch('https://venomgram-server.herokuapp.com/user/self/', {
+    fetch(`${process.env.VUE_APP_SERVER}/user/self/`, {
       headers: { Authorization: `Bearer ${this.token}` },
     })
       .then(res => res.json())
@@ -95,13 +95,13 @@ export default {
       const formData = new FormData();
       formData.append('bio', this.newBio);
       formData.append('display', this.file);
-      fetch('https://venomgram-server.herokuapp.com/user/update', {
+      fetch(`${process.env.VUE_APP_SERVER}/user/update`, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${this.token}` },
         body: formData,
       })
         .then(() => {
-          fetch('https://venomgram-server.herokuapp.com/user/self/', {
+          fetch(`${process.env.VUE_APP_SERVER}/user/self/`, {
             headers: { Authorization: `Bearer ${this.token}` },
           })
             .then(res => res.json())
@@ -132,14 +132,14 @@ export default {
       this.image = '';
     },
     unblock(user){
-      fetch(`https://venomgram-server.herokuapp.com/user/unblock`, {
+      fetch(`${process.env.VUE_APP_SERVER}/user/unblock`, {
         method: "PATCH",
         headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user }),
       })
         .then(res => res.json())
         .then(() => {
-          fetch('https://venomgram-server.herokuapp.com/user/self/', {
+          fetch(`${process.env.VUE_APP_SERVER}/user/self/`, {
             headers: { Authorization: `Bearer ${this.token}` },
           })
           .then(res => res.json())
@@ -150,7 +150,7 @@ export default {
         }).catch(err => console.log(err));
     },
     deleteAccount(){
-      fetch(`https://venomgram-server.herokuapp.com/user/delete`, {
+      fetch(`${process.env.VUE_APP_SERVER}/user/delete`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${this.token}` },
       })

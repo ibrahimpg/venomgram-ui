@@ -9,7 +9,7 @@
       </div>
 
       <div v-else style="margin-top:10px;">
-        <img :src="image" />
+        <img :src="image" style="object-fit: cover; image-orientation: from-image;" />
         <button @click="removeImage">Remove</button>
         <br>
         <textarea v-model="caption" placeholder="Caption..." maxlength="200"></textarea>
@@ -39,7 +39,7 @@ export default {
       const formData = new FormData();
       formData.append('caption', this.caption);
       formData.append('picture', this.file);
-      fetch('https://venomgram-server.herokuapp.com/post/upload', {
+      fetch(`${process.env.VUE_APP_SERVER}/post/upload`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${this.token}` },
         body: formData,

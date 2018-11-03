@@ -21,12 +21,12 @@ In the command line:
 
 `npm install`
 
+Now you want to inject your environmental variables (Heroku and Cloudinary URL's) with a .env file. After doing that:
+
 `npm run build`
 
 Grab the newly created 'dist' folder in your directory and throw it up on Netlify/cPanel/Github Pages or whatever else you use.
 
 # To-do
-
-* Move Heroku and Cloudinary URLs to environmental variables.
 
 * Put a "3 dots" (options icon) which show block/report options upon click instead of having them always visible.

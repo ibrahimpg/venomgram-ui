@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     login() {
-      fetch('https://venomgram-server.herokuapp.com/user/login', {
+      fetch(`${process.env.VUE_APP_SERVER}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: this.username, password: this.password }),
@@ -69,7 +69,7 @@ export default {
         .catch(err => this.response = 'Login failed.');
     },
     register() {
-      fetch('https://venomgram-server.herokuapp.com/user/register', {
+      fetch(`${process.env.VUE_APP_SERVER}/user/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: this.username, password: this.password }),
