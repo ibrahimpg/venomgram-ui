@@ -27,8 +27,6 @@ Grab the newly created 'dist' folder in your directory and throw it up on Netlif
 
 # To-do
 
-* Create view for looking at another user's profile upon clicking their name in feed/explore.
-
 * Move Heroku and Cloudinary URLs to environmental variables.
 
 * Put a "3 dots" (options icon) which show block/report options upon click instead of having them always visible.

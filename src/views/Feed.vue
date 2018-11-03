@@ -73,7 +73,7 @@ export default {
     };
   },
   mounted() {
-    fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
+    fetch(`https://venomgram-server.herokuapp.com/post/feed/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
         if(data === 'Authentication Failed.') {
@@ -91,7 +91,7 @@ export default {
     loadMore() {
       this.from += 5;
       this.to += 5;
-      fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/${this.from}/${this.to}`)
+      fetch(`https://venomgram-server.herokuapp.com/post/feed/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
           if(data === 'Authentication Failed.') {
@@ -117,7 +117,7 @@ export default {
             localStorage.clear();
             this.$store.commit('setUser');
           }
-          fetch(`https://venomgram-server.herokuapp.com/post/feed-view/${this.username}/0/${this.to}`)
+          fetch(`https://venomgram-server.herokuapp.com/post/feed/${this.username}/0/${this.to}`)
             .then(res => res.json())
             .then((data) => { 
               if(data === 'Authentication Failed.') {
