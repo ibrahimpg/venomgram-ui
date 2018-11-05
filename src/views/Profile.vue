@@ -25,8 +25,12 @@
                 <img v-bind:src="cloudinaryURL + post.username + '.jpg'" alt="user img" width=25 height=25 style="border-radius: 50%;" />
               </div>
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
-                <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
-                <i @click="interact('post/delete', post._id, null, 'DELETE')" class="fas fa-trash"></i>
+                <i v-if="selectedPost !== post._id" @click="selectedPost = post._id" class="fas fa-ellipsis-v"></i>
+                <div v-if="selectedPost === post._id">
+                  <i @click="selectedPost = ''" class="fas fa-ellipsis-v"></i>
+                  <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
+                  <i @click="interact('post/delete', post._id, null, 'DELETE')" class="fas fa-trash"></i>
+                </div>
               </div>
             </div>
 
@@ -66,6 +70,7 @@ export default {
       modal: false,
       imageSource: '',
       cloudinaryURL: process.env.VUE_APP_CLOUDINARY,
+      selectedPost: '',
     };
   },
   mounted() {

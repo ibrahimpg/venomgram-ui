@@ -76,9 +76,9 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
-          if(data.message === 'User created.'){
+          if(data === 'User created.'){
             this.active = 'login';
-            this.response = data.message + ' Please log in.';
+            this.response = data + ' Please log in.';
           } else {
             this.response = 'Registration failed. Please try again. Usernames must 6-16 characters and contain only lowercase letters, numbers, hyphens, and underscores.';
           }
