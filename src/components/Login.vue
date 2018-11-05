@@ -60,6 +60,7 @@ export default {
             this.username = '';
             this.password = '';
             localStorage.setItem('username', data.username);
+            localStorage.setItem('id', data.id);
             localStorage.setItem('token', data.token);
             this.$store.commit('setUser');
           } else {

@@ -39,8 +39,8 @@
             <div v-if="selectedPost === post._id" style="background-color: navy; color: white; display: flex; justify-content: space-around;">
               <p @click="interact('user/unfollow', null, post.username, 'PATCH')" style="cursor: pointer">Unfollow</p>
               <p @click="modal = true; imageSource = post.path" style="cursor: pointer;">Expand</p>
-              <p v-if="post.reportedBy.includes(username)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer; color: red;">Report</p>
-              <p v-if="!post.reportedBy.includes(username)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer;">Report</p>
+              <p v-if="post.reportedBy.includes(id)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer; color: red;">Report</p>
+              <p v-if="!post.reportedBy.includes(id)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer;">Report</p>
               <p @click="interact('user/block', null, post.username, 'PATCH')" style="cursor: pointer;">Block</p>
             </div>
 
@@ -142,6 +142,9 @@ export default {
   computed: {
     username() {
       return this.$store.state.username;
+    },
+    id() {
+      return this.$store.state.id;
     },
     token() {
       return this.$store.state.token;
