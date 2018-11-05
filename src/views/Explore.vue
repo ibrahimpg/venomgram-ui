@@ -40,11 +40,11 @@
             <img @dblclick="interact('post/like', post._id, null, 'PATCH')" v-bind:src="post.path" alt="user post" class="picture" />
           </div>
           <div>
-            <p style="width:100%; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
+            <p style="width:100%; padding: 5px;"><b style="cursor:pointer;" v-on:click="viewUser(post.username)">{{post.username}} </b>{{post.caption}}</p>
           </div>
         </div>
 
-        <button style="margin-bottom:5px;" id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">
+        <button style="margin-bottom:15px;" id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">
           Load More
         </button>
       
@@ -118,6 +118,11 @@ export default {
             .then((data) => { this.posts = data; });
         })
         .catch(err => console.log(err));
+    },
+    viewUser(targetUser) {
+      localStorage.setItem('targetUser', targetUser);
+      this.$store.commit('targetUser');
+      this.$router.push('user');
     },
   },
   computed: {

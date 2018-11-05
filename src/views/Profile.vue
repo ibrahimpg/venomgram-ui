@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <button style="margin-bottom:5px;" id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">
+        <button style="margin-bottom:15px;" id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">
           Load More
         </button>
 

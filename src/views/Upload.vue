@@ -9,7 +9,7 @@
       </div>
 
       <div v-else style="margin-top:10px;">
-        <img :src="image" style="object-fit: cover; image-orientation: from-image;" />
+        <img :src="image" style="object-fit: cover;" />
         <button @click="removeImage">Remove</button>
         <br>
         <textarea v-model="caption" placeholder="Caption..." maxlength="200"></textarea>
