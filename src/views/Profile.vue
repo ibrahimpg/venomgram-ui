@@ -38,7 +38,7 @@
             <img @dblclick="interact('post/like', post._id, null, 'PATCH')" v-bind:src="post.path" alt="user post" class="picture" />
           </div>
           <div>
-            <p style="width:300px; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
+            <p style="width:100%; padding: 5px;"><b>{{post.username}} </b>{{post.caption}}</p>
           </div>
         </div>
 
