@@ -10,7 +10,7 @@
 
     <div v-if="modal === false">
     <Settings />
-    <div class="body">
+    <div class="body" style="margin-top:0">
       <div class="container">
         <div v-for="post in posts" :key="post.id" class="card">
           <div>
