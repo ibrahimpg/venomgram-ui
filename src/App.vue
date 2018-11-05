@@ -112,6 +112,7 @@ h2, h3, h4, h5, h6, p { font-family: 'Montserrat', Verdana, sans-serif; margin: 
 @media only screen and (max-width: 500px) {
     .card, .picture {
         width: 100%;
+        box-shadow: none;
     }
     .body {
       padding-top: 0;

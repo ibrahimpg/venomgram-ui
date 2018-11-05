@@ -26,7 +26,3 @@ Now you want to inject your environmental variables (Heroku and Cloudinary URL's
 `npm run build`
 
 Grab the newly created 'dist' folder in your directory and throw it up on Netlify/cPanel/Github Pages or whatever else you use.
-
-# To-do
-
-* Put a "3 dots" (options icon) which show block/report options upon click instead of having them always visible.
