@@ -26,12 +26,13 @@
               </div>
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
                 <i v-if="selectedPost !== post._id" @click="selectedPost = post._id" class="fas fa-ellipsis-v"></i>
-                <div v-if="selectedPost === post._id">
-                  <i @click="selectedPost = ''" class="fas fa-ellipsis-v"></i>
-                  <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
-                  <i @click="interact('post/delete', post._id, null, 'DELETE')" class="fas fa-trash"></i>
-                </div>
+                <i v-if="selectedPost === post._id" @click="selectedPost = ''" class="fas fa-ellipsis-v"></i>
               </div>
+            </div>
+
+            <div v-if="selectedPost === post._id" style="background-color: navy; color: white; display: flex; justify-content: space-around;">
+              <p @click="modal = true; imageSource = post.path" style="cursor: pointer;">Expand</p>
+              <p @click="interact('post/delete', post._id, null, 'DELETE')" style="cursor: pointer;">Delete</p>
             </div>
 
             <img @dblclick="interact('post/like', post._id, null, 'PATCH')" v-bind:src="post.path" alt="user post" class="picture" />

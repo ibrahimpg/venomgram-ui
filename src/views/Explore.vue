@@ -26,13 +26,15 @@
               <div style="display: flex; justify-content: flex-end; align-items: center; width:33%;">
                 <i @click="interact('user/follow', null, post.username, 'PATCH')" class="fas fa-user-plus"></i>
                 <i v-if="selectedPost !== post._id" @click="selectedPost = post._id" class="fas fa-ellipsis-v"></i>
-                <div v-if="selectedPost === post._id">
-                  <i @click="selectedPost = ''" class="fas fa-ellipsis-v"></i>
-                  <i @click="modal = true; imageSource = post.path" class="fas fa-expand"></i>
-                  <i @click="interact('post/report', post._id, null, 'PATCH')" class="fas fa-exclamation-circle report"></i>
-                  <i @click="interact('user/block', null, post.username, 'PATCH')" class="fas fa-ban"></i>
-                </div>
+                <i v-if="selectedPost === post._id" @click="selectedPost = ''" class="fas fa-ellipsis-v"></i>
               </div>
+            </div>
+
+            <div v-if="selectedPost === post._id" style="background-color: navy; color: white; display: flex; justify-content: space-around;">
+              <p @click="modal = true; imageSource = post.path" style="cursor: pointer;">Expand</p>
+              <p v-if="post.reportedBy.includes(username)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer; color: red;">Report</p>
+              <p v-if="!post.reportedBy.includes(username)" @click="interact('post/report', post._id, null, 'PATCH')" style="cursor: pointer;">Report</p>
+              <p @click="interact('user/block', null, post.username, 'PATCH')" style="cursor: pointer;">Block</p>
             </div>
 
             <img @dblclick="interact('post/like', post._id, null, 'PATCH')" v-bind:src="post.path" alt="user post" class="picture" />

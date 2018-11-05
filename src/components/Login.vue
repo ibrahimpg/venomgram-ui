@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div style="margin-top:10px; width: 300px;"><p>{{response}}</p></div>
+      <div style="margin-top:10px; width: 300px; text-align: center;"><p>{{response}}</p></div>
 
     </div>
   </div>
