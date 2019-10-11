@@ -3,7 +3,7 @@
     <div class="container">
 
       <div class="header">
-        <h1>Venomgram</h1>
+        <h1 style="color: #fff;">Venomgram</h1>
       </div>
 
       <div class="box" v-if="active === 'login'">
@@ -98,6 +98,7 @@ export default {
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    margin-top: 20px;
   }
 
   .box {
@@ -121,14 +122,21 @@ export default {
     border-radius: 3px;
     margin-top: 35px;
     margin-bottom: 10px;
+    border-radius: 3px;
+    transition: 0.1s;
+    cursor: pointer;
   }
+
+input[type=button]:hover {
+  background-color: #42b883;
+}
 
   input[type=text], input[type=password] {
     margin: 10px 0;
     padding: 10px;
     outline: none;
     border: none;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid #42b883;
   }
 
   input[type=text] {
