@@ -8,13 +8,13 @@
 
     <div v-if="username !== undefined">
       <div class="header">
-        <h1>Venomgram</h1>
+        <h1 style="color: #fff;">Venomgram</h1>
       </div>
-      <router-view/>
+      <router-view />
       <div id="nav">
         <router-link to="/"><i class="fas fa-home fa-2x"></i></router-link>
         <router-link to="/explore"><i class="fas fa-search fa-2x"></i></router-link>
-        <router-link to="/upload"><i class="fas fa-camera fa-2x"></i></router-link>
+        <router-link to="/upload"><i class="fas fa-camera-retro fa-2x"></i></router-link>
         <router-link to="/profile"><i class="fas fa-user-alt fa-2x"></i></router-link>
       </div>
     </div>
@@ -37,7 +37,7 @@ export default {
     })
       .then(res => res.json())
       .then((data) => {
-        if(data === 'Authentication Failed.') {
+        if (data === 'Authentication Failed.') {
           localStorage.clear();
           this.$store.commit('setUser');
         }
@@ -64,10 +64,9 @@ h1 { font-family: 'Dancing Script'; font-size: 2.2em; color: navy; margin: 0; }
 h2, h3, h4, h5, h6, p { font-family: 'Montserrat', Verdana, sans-serif; margin: 0; line-height: 1.5; }
 
 .header {
-  background-color: white;
-  height: 10vh;
+  background-color: navy;
+  height: 11vh;
   width: 100vw;
-  border-bottom: 5px solid navy;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,35 +76,35 @@ h2, h3, h4, h5, h6, p { font-family: 'Montserrat', Verdana, sans-serif; margin: 
 }
 
 #nav {
-  background-color: white;
+  background-color: navy;
   height: 10vh;
   width: 100vw;
   border-top: 5px solid navy;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: fixed;
   left: 0;
   bottom: 0;
 }
 
-#nav a { color: navy; }
-#nav a.router-link-exact-active { color: lightgreen; }
+#nav a { color: #fff; margin: 0 30px; }
+#nav a.router-link-exact-active { color: #42b883; }
 
-.body { margin-top: 10vh; margin-bottom: 10vh; padding-top:10px; }
+.body { margin-top: 10vh; margin-bottom: 10vh; padding-top: 10px; }
 
 .card {
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  margin-bottom: 50px; 
-  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   width: 300px;
 }
 
 .picture {
-  width: 300px; 
-  max-height: 300px; 
+  width: 300px;
+  max-height: 300px;
   object-fit: cover;
 }
 
@@ -113,9 +112,6 @@ h2, h3, h4, h5, h6, p { font-family: 'Montserrat', Verdana, sans-serif; margin: 
     .card, .picture {
         width: 100%;
         box-shadow: none;
-    }
-    .body {
-      padding-top: 0;
     }
 }
 

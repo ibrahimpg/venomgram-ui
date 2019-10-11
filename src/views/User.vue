@@ -16,7 +16,7 @@
           <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px solid white; padding: 5px; margin: 0 20px; border-radius: 4px;">
             <h3>Following</h3>
             <h3>{{userData.following.length}}</h3>
-          </div> 
+          </div>
           <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px solid white; padding: 5px; margin: 0 20px; border-radius: 4px;">
             <h3>Followers</h3>
             <h3>{{userData.followers.length}}</h3>
@@ -33,7 +33,7 @@
       <div class="container" style="margin-top: 10vh;">
         <div v-for="post in posts" :key="post.id" class="card">
           <div>
-            
+
             <div style="display: flex; background-color: navy; justify-content: space-evenly; padding: 10px;">
               <div style="display: flex; justify-content: flex-start; align-items: center; width:33%;">
                 <i v-if="post.likedBy.includes(username)" @click="interact('post/unlike', post._id, null, 'PATCH')" class="fas fa-heart"></i>
@@ -97,7 +97,7 @@ export default {
     fetch(`${process.env.VUE_APP_SERVER}/post/profile/${this.targetUser}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
-        if(data === 'Authentication Failed.') {
+        if (data === 'Authentication Failed.') {
           localStorage.clear();
           this.$store.commit('setUser');
         }
@@ -107,14 +107,14 @@ export default {
         fetch(`${process.env.VUE_APP_SERVER}/user/user/${this.targetUser}`)
           .then(res => res.json())
           .then((data) => {
-            if(data === 'Authentication Failed.') {
+            if (data === 'Authentication Failed.') {
               localStorage.clear();
               this.$store.commit('setUser');
             }
             this.userData = data;
           })
-      .catch(err => console.log(err));
-      })
+          .catch(err => console.log(err));
+      });
   },
   methods: {
     loadMore() {
@@ -123,11 +123,10 @@ export default {
       fetch(`${process.env.VUE_APP_SERVER}/post/profile/${this.targetUser}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Authentication Failed.') {
+          if (data === 'Authentication Failed.') {
             localStorage.clear();
             this.$store.commit('setUser');
-          }
-          else if(data.length === 0) {
+          } else if (data.length === 0) {
             this.morePosts = false;
           }
           this.posts.push(...data);
@@ -142,7 +141,7 @@ export default {
       })
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Authentication Failed.') {
+          if (data === 'Authentication Failed.') {
             localStorage.clear();
             this.$store.commit('setUser');
           }
@@ -154,19 +153,19 @@ export default {
           fetch(`${process.env.VUE_APP_SERVER}/user/user/${this.targetUser}`)
             .then(res => res.json())
             .then((data) => {
-              if(data === 'Authentication Failed.') {
+              if (data === 'Authentication Failed.') {
                 localStorage.clear();
                 this.$store.commit('setUser');
               }
               this.userData = data;
             })
-        .then(() => {
-          if(action === 'user/block'){
-            this.$router.push('/');
-          }
+            .then(() => {
+              if (action === 'user/block') {
+                this.$router.push('/');
+              }
+            })
+            .catch(err => console.log(err));
         })
-      .catch(err => console.log(err));
-      })
         .catch(err => console.log(err));
     },
   },

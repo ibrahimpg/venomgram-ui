@@ -5,20 +5,20 @@
       <div v-if="!settings">
 
         <div style="display: flex; position: absolute; top: 11vh; right: 10px">
-          <i v-if="!edit" @click="edit = true" class="fas fa-edit"></i>
+          <i v-if="!edit" @click="edit = true" class="fas fa-edit fa-2x" style="margin: 0 3px;"></i>
           <i v-if="edit" @click="edit = false" class="far fa-times-circle fa-2x"></i>
-          <i v-if="!edit" @click="settings = true" class="fas fa-cog"></i>
-          <i v-if="!edit" @click="logout()" class="fas fa-sign-out-alt"></i>
+          <i v-if="!edit" @click="settings = true" class="fas fa-cog fa-2x" style="margin: 0 3px;"></i>
+          <i v-if="!edit" @click="logout()" class="fas fa-sign-out-alt fa-2x" style="margin: 0 3px;"></i>
         </div>
 
         <div style="display: flex; justify-content: center; width: 95vw; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px solid white; padding: 5px; margin: 0 20px; border-radius: 4px;">
-            <h3>Following</h3>
-            <h3>{{userData.following.length}}</h3>
-          </div> 
-          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px solid white; padding: 5px; margin: 0 20px; border-radius: 4px;">
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 5px; margin: 0 20px; border-radius: 4px;">
             <h3>Followers</h3>
             <h3>{{userData.followers.length}}</h3>
+          </div>
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 5px; margin: 0 20px; border-radius: 4px;">
+            <h3>Following</h3>
+            <h3>{{userData.following.length}}</h3>
           </div>
         </div>
 
@@ -32,7 +32,7 @@
           <h2>{{userData.username}}</h2>
 
           <div v-if="!image" stlye="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%; object-fit: cover;" /></div>
+            <div style="text-align: center; margin: 8px 0;"><img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%; object-fit: cover;" /></div>
             <div><input type="file" @change="onFileChange"></div>
           </div>
           <div v-else style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -40,7 +40,7 @@
             <div><input type="file" @change="onFileChange"></div>
           </div>
 
-          <input v-model="newBio" maxlength="200" />
+          <input v-model="newBio" style="margin: 10px 0;" maxlength="200" />
           <button @click="update()">Update</button>
         </div>
 
@@ -142,9 +142,9 @@ export default {
     removeImage(e) {
       this.image = '';
     },
-    unblock(user){
+    unblock(user) {
       fetch(`${process.env.VUE_APP_SERVER}/user/unblock`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user }),
       })
@@ -153,21 +153,21 @@ export default {
           fetch(`${process.env.VUE_APP_SERVER}/user/self/`, {
             headers: { Authorization: `Bearer ${this.token}` },
           })
-          .then(res => res.json())
-          .then((data) => {
-            this.userData = data;
-            this.newBio = data.bio;
-          }).catch(err => console.log(err));
+            .then(res => res.json())
+            .then((data) => {
+              this.userData = data;
+              this.newBio = data.bio;
+            }).catch(err => console.log(err));
         }).catch(err => console.log(err));
     },
-    deleteAccount(){
+    deleteAccount() {
       fetch(`${process.env.VUE_APP_SERVER}/user/delete`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${this.token}` },
       })
         .then(res => res.json())
         .then((data) => {
-          if(data === 'User deleted.'){
+          if (data === 'User deleted.') {
             localStorage.clear();
             this.$store.commit('setUser');
           }
@@ -206,6 +206,13 @@ button, input[type=button] {
   color: navy;
   font-family: 'Montserrat', Verdana, sans-serif;
   padding: 10px 20px;
+  border-radius: 3px;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+button:hover, input[type=button]:hover {
+  background-color: #42b883;
 }
 
 i {

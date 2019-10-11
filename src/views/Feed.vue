@@ -3,7 +3,7 @@
 
     <div v-if="modal === true">
       <div style="display: flex; position: fixed; top: 11vh; right: 10px">
-        <i @click="modal = false; imageSource = ''" class="far fa-times-circle fa-2x" style="color:navy;"></i>
+        <i @click="modal = false; imageSource = ''" class="far fa-times-circle fa-2x" style="color: navy; margin-top: 5px;"></i>
       </div>
       <img v-bind:src="imageSource" alt="user img" style="margin-top: 10vh; max-width: 100vw; max-height: 80vh;">
     </div>
@@ -15,7 +15,7 @@
         <div v-if="noPosts">
           <p style="padding: 5px;">
             There doesn't seem to be anything here.
-            Head to the <router-link to="/explore">Explore page</router-link> to find some people to follow! 
+            Head to the <router-link to="/explore">Explore page</router-link> to find some people to follow!
           </p>
         </div>
 
@@ -54,7 +54,7 @@
         <button style="margin-bottom:15px;" id="loadMore" v-if="posts.length >= 5 && morePosts === true" @click="loadMore()">
           Load More
         </button>
-      
+
       </div>
       </div>
     </div>
@@ -85,11 +85,10 @@ export default {
     fetch(`${process.env.VUE_APP_SERVER}/post/feed/${this.username}/${this.from}/${this.to}`)
       .then(res => res.json())
       .then((data) => {
-        if(data === 'Authentication Failed.') {
+        if (data === 'Authentication Failed.') {
           localStorage.clear();
           this.$store.commit('setUser');
-        }
-        else if(data.length === 0) {
+        } else if (data.length === 0) {
           this.noPosts = true;
         }
         this.posts = data;
@@ -103,11 +102,10 @@ export default {
       fetch(`${process.env.VUE_APP_SERVER}/post/feed/${this.username}/${this.from}/${this.to}`)
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Authentication Failed.') {
+          if (data === 'Authentication Failed.') {
             localStorage.clear();
             this.$store.commit('setUser');
-          }
-          else if(data.length === 0) {
+          } else if (data.length === 0) {
             this.morePosts = false;
           }
           this.posts.push(...data);
@@ -122,18 +120,18 @@ export default {
       })
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Authentication Failed.') {
+          if (data === 'Authentication Failed.') {
             localStorage.clear();
             this.$store.commit('setUser');
           }
           fetch(`${process.env.VUE_APP_SERVER}/post/feed/${this.username}/0/${this.to}`)
             .then(res => res.json())
-            .then((data) => { 
-              if(data === 'Authentication Failed.') {
+            .then((data) => {
+              if (data === 'Authentication Failed.') {
                 localStorage.clear();
                 this.$store.commit('setUser');
               }
-              this.posts = data; 
+              this.posts = data;
             });
         })
         .catch(err => console.log(err));
@@ -166,6 +164,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 25px;
+  padding-top: 25px;
 }
 
 button {
@@ -175,6 +175,13 @@ button {
   color: white;
   font-family: 'Montserrat', Verdana, sans-serif;
   padding: 10px 20px;
+  border-radius: 3px;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #42b883;
 }
 
 i {

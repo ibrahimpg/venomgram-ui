@@ -46,16 +46,15 @@ export default {
       })
         .then(res => res.json())
         .then((data) => {
-          if(data === 'Authentication Failed.') {
+          if (data === 'Authentication Failed.') {
             localStorage.clear();
             this.$store.commit('setUser');
-          }
-          else if(data === 'Picture posted.') {
+          } else if (data === 'Picture posted.') {
             this.image = '';
             this.caption = '';
             this.$router.push('/profile');
           } else {
-            this.response = 'An error occurred while posting your picture. Please try again.'
+            this.response = 'An error occurred while posting your picture. Please try again.';
           }
         });
     },
@@ -94,6 +93,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .container > div {

@@ -12,8 +12,8 @@
           <h3 @click="active = 'register'; response = 'Usernames must be 6-16 characters and contain only lowercase letters, numbers, hyphens, and underscores.'" style="width:100%; cursor: pointer; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
-          <input v-model="username" placeholder="Username..." />
-          <input v-model="password" type="password" placeholder="Password..." />
+          <input v-model="username" type="text" placeholder="Username" />
+          <input v-model="password" type="password" placeholder="Password" />
           <input type="button" value="Submit" @click="login()">
         </div>
       </div>
@@ -24,8 +24,8 @@
           <h3 @click="active = 'register'" style="width:100%; cursor: pointer; background-color: navy; color: white; padding: 2px;">Register</h3>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%; width: 80%;">
-          <input v-model="username" placeholder="Username..." />
-          <input v-model="password" type="password" placeholder="Password..." />
+          <input v-model="username" type="text" placeholder="Username" />
+          <input v-model="password" type="password" placeholder="Password" />
           <input type="button" value="Submit" @click="register()">
         </div>
       </div>
@@ -76,10 +76,10 @@ export default {
         body: JSON.stringify({ username: this.username, password: this.password }),
       })
         .then(res => res.json())
-        .then(data => {
-          if(data === 'User created.'){
+        .then((data) => {
+          if (data === 'User created.') {
             this.active = 'login';
-            this.response = data + ' Please log in.';
+            this.response = `${data} Please log in.`;
           } else {
             this.response = 'Registration failed. Please try again. Usernames must 6-16 characters and contain only lowercase letters, numbers, hyphens, and underscores.';
           }
@@ -105,9 +105,10 @@ export default {
     flex-direction: column;
     align-items: center;
     width: 300px;
-    height: 200px;
-    border: 5px solid navy;
+    padding-bottom: 10px;
+    border: 3px solid navy;
     margin-top: 10px;
+    border-radius: 3px;
   }
 
   input[type=button] {
@@ -117,6 +118,25 @@ export default {
     color: white;
     font-family: 'Montserrat', Verdana, sans-serif;
     padding: 10px 20px;
+    border-radius: 3px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+  }
+
+  input[type=text], input[type=password] {
+    margin: 10px 0;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid lightgray;
+  }
+
+  input[type=text] {
+    margin-top: 35px;
+  }
+
+  input[type=text]:focus, input[type=password]:focus {
+    border-bottom: 2px solid navy;
   }
 
 </style>
