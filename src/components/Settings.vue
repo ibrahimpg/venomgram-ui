@@ -12,17 +12,17 @@
         </div>
 
         <div style="display: flex; justify-content: center; width: 95vw; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 5px; margin: 0 20px; border-radius: 4px;">
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 5px; margin: 0 20px;">
             <h3>Followers</h3>
             <h3>{{userData.followers.length}}</h3>
           </div>
-          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 5px; margin: 0 20px; border-radius: 4px;">
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 5px; margin: 0 20px;">
             <h3>Following</h3>
             <h3>{{userData.following.length}}</h3>
           </div>
         </div>
 
-        <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; height: 100%;">
+        <div v-if="!edit" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
           <h2>{{userData.username}}</h2>
           <img :src="userData.display" alt="user picture" width=100 height=100 style="border-radius:50%; object-fit: cover;" />
           <p style="padding: 5px;">{{userData.bio}}</p>
@@ -195,8 +195,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 350px;
   width: 100%;
+  padding: 20px 0;
 }
 
 button, input[type=button] {
