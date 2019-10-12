@@ -4,11 +4,11 @@
 
       <div v-if="!settings">
 
-        <div style="display: flex; position: absolute; top: 11vh; right: 10px">
-          <i v-if="!edit" @click="edit = true" class="fas fa-edit fa-2x" style="margin: 0 3px;"></i>
+        <div class="settingsButtons">
+          <i v-if="!edit" @click="edit = true" class="fas fa-edit fa-2x" style="margin: 0 7px;"></i>
           <i v-if="edit" @click="edit = false" class="far fa-times-circle fa-2x"></i>
-          <i v-if="!edit" @click="settings = true" class="fas fa-cog fa-2x" style="margin: 0 3px;"></i>
-          <i v-if="!edit" @click="logout()" class="fas fa-sign-out-alt fa-2x" style="margin: 0 3px;"></i>
+          <i v-if="!edit" @click="settings = true" class="fas fa-cog fa-2x" style="margin: 0 7px;"></i>
+          <i v-if="!edit" @click="logout()" class="fas fa-sign-out-alt fa-2x" style="margin: 0 7px;"></i>
         </div>
 
         <div style="display: flex; justify-content: center; width: 95vw; margin-bottom: 20px;">
@@ -219,6 +219,22 @@ i {
   color: white;
   padding: 0px 5px;
   cursor: pointer;
+}
+
+.settingsButtons {
+  display: flex;
+  position: absolute;
+  top: 11vh;
+  right: 10px;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 850px) {
+    .settingsButtons {
+      position: static;
+      justify-content: center;
+      padding: 5px 0 35px 0;
+    }
 }
 
 </style>
