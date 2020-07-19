@@ -1,5 +1,5 @@
 # venomgram-ui
-Reactive UI built with Vue (with Vue-Router and Vuex), transpiled with Babel, and bundled with Webpack. A painless process with Vue CLI 3. Serves as the front-end for [Venomgram](https://venomgram.netlify.com), an Instagram clone built with full-stack JavaScript. The server is a REST API built with Node/Express/MongoDB, check that out [here](https://github.com/ibrahimpg/venomgram-server).
+Reactive UI built with Vue (with Vue-Router and Vuex), transpiled with Babel, and bundled with Webpack. A painless process with Vue CLI 3. Serves as the front-end for [Venomgram](https://venomgram.com), an Instagram clone built with full-stack JavaScript. The server is a REST API built with Node/Express/MongoDB, check that out [here](https://github.com/ibrahimpg/venomgram-server).
 
 # Layout
 
